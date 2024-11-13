@@ -1,45 +1,180 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
+import { Link, Tabs } from 'expo-router';
+import { View } from 'react-native';
 
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import CameraIcon from '@/components/icons/CameraIcon';
+import HistoryIcon from '@/components/icons/HistoryIcon';
+import HomeIcon from '@/components/icons/HomeIcon';
+import PersonIcon from '@/components/icons/PersonIcon';
+import SearchIcon from '@/components/icons/SearchIcon';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
+    <>
+      <Tabs
+        screenOptions={{
+          tabBarActiveTintColor: '#3D65B0',
+          tabBarInactiveTintColor: '#858585',
+          tabBarStyle: {
+            backgroundColor: '#F8F8F8',
+            borderTopWidth: 0,
           },
-          default: {},
-        }),
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-    </Tabs>
+        }}>
+        <Tabs.Screen
+          name="index"
+          options={{
+            headerShown: false,
+            tabBarShowLabel: false,
+            tabBarIcon: ({ focused, color }) => (
+              <View style={{ alignItems: 'center' }}>
+                <HomeIcon color={color} />
+                {focused && (
+                  <View
+                    style={{
+                      position: 'absolute',
+                      bottom: -10,
+                      width: 8,
+                      height: 2,
+                      backgroundColor: '#3D65B0',
+                      borderRadius: 1,
+                    }}
+                  />
+                )}
+              </View>
+            ),
+            headerRight: () => (
+              <Link href="/modal" asChild>
+              </Link>
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="search"
+          options={{
+            tabBarShowLabel: false,
+            title: 'Buscar',
+            tabBarStyle: {
+              backgroundColor: 'transparent',
+              borderTopWidth: 0,
+            },
+            tabBarIcon: ({ focused, color }) => (
+              <View style={{ alignItems: 'center' }}>
+                <SearchIcon color={color} />
+                {focused && (
+                  <View
+                    style={{
+                      position: 'absolute',
+                      bottom: -10,
+                      width: 8,
+                      height: 2,
+                      backgroundColor: '#3D65B0',
+                      borderRadius: 1,
+                    }}
+                  />
+                )}
+              </View>
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="camera"
+          options={{
+            tabBarShowLabel: false,
+            title: 'Analise com IA',
+            tabBarStyle: {
+              backgroundColor: 'transparent',
+              borderTopWidth: 0,
+            },
+            tabBarIcon: ({ color, focused }) => (
+              <View
+                style={{
+                  backgroundColor: '#3D65B0',
+                  width: 48,
+                  height: 48,
+                  borderRadius: 11,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  marginBottom: 40,
+                  shadowColor: '#858585',
+                  shadowOffset: {
+                    width: 0,
+                    height: 4,
+                  },
+                  shadowOpacity: 0.3,
+                  shadowRadius: 4.65,
+                  elevation: 8,
+                }}>
+                <CameraIcon color="#fff" />
+                {focused && (
+                  <View
+                    style={{
+                      position: 'absolute',
+                      bottom: 8,
+                      width: 8,
+                      height: 2,
+                      backgroundColor: '#fff',
+                      borderRadius: 1,
+                    }}
+                  />
+                )}
+              </View>
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="history"
+          options={{
+            tabBarShowLabel: false,
+            tabBarStyle: {
+              backgroundColor: 'transparent',
+              borderTopWidth: 0,
+            },
+            tabBarIcon: ({ color, focused }) => (
+              <View style={{ alignItems: 'center' }}>
+                <HistoryIcon color={color} />
+                {focused && (
+                  <View
+                    style={{
+                      position: 'absolute',
+                      bottom: -10,
+                      width: 8,
+                      height: 2,
+                      backgroundColor: '#3D65B0',
+                      borderRadius: 1,
+                    }}
+                  />
+                )}
+              </View>
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="person"
+          options={{
+            tabBarShowLabel: false,
+            tabBarStyle: {
+              backgroundColor: 'transparent',
+              borderTopWidth: 0,
+            },
+            tabBarIcon: ({ color, focused }) => (
+              <View style={{ alignItems: 'center' }}>
+                <PersonIcon color={color} />
+                {focused && (
+                  <View
+                    style={{
+                      position: 'absolute',
+                      bottom: -10,
+                      width: 8,
+                      height: 2,
+                      backgroundColor: '#3D65B0',
+                      borderRadius: 1,
+                    }}
+                  />
+                )}
+              </View>
+            ),
+          }}
+        />
+      </Tabs>
+    </>
   );
 }
