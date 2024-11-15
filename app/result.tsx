@@ -20,8 +20,14 @@ export default function Result() {
 
       {/* Gluten Warning */}
       <View style={styles.alertContainer}>
+        <View style={styles.alertIconAndText}>
         <AlertIcon />
-        <Text style={styles.alertText}>Possible ingredients with gluten</Text>
+        <Text style={styles.alertText}>
+          Possible ingredients with gluten
+        </Text>
+        </View>
+        
+        
       </View>
 
       {/* Dish Description */}
@@ -40,13 +46,16 @@ export default function Result() {
           </Text>
           <Text style={styles.ingredient}>• Shrimp</Text>
           <Text style={styles.ingredient}>• Basil</Text>
-          <Text style={styles.ingredient}>• +2 more ingredients</Text>
+          <Text style={styles.moreIngredient}>• +2 more ingredients</Text>
         </View>
 
         {/* "View All" Button */}
+        <View style={styles.containerButton}>
         <TouchableOpacity style={styles.viewAllButton}>
           <Text style={styles.viewAllText}>View All</Text>
         </TouchableOpacity>
+        </View>
+        
       </View>
 
       {/* AI Recommendation */}
@@ -57,9 +66,11 @@ export default function Result() {
           pasta used. Common pasta is made from wheat, which contains gluten.
         </Text>
         {/* Link to AI */}
+       
         <TouchableOpacity style={styles.chatButton}>
-          <Text style={styles.chatText}>Talk with AI Master Chef →</Text>
+          <Text style={styles.chatText}>Talk with <Text style={styles.aiText}>AI Master Chef →</Text></Text> 
         </TouchableOpacity>
+       
       </View>
     </ScrollView>
   );
@@ -73,73 +84,100 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: 250,
-    borderRadius: 10,
+    borderTopRightRadius: 10,
+    borderTopLeftRadius: 10,
     marginBottom: 16,
   },
   alertContainer: {
-    backgroundColor: '#D14343',
+    width: '100%',
+    backgroundColor: '#D85555',
     padding: 10,
     alignItems: 'center',
     flexDirection: 'row',
     borderRadius: 5,
     marginBottom: 16,
   },
+  alertIconAndText :{
+    flexDirection: 'row',
+    width: '100%', 
+   alignItems: 'center',
+   justifyContent: 'center',
+  },
   alertText: {
+    width: '60%',
     color: '#fff',
     fontWeight: 'bold',
     fontSize: 12,
-    marginLeft: 10,
+    marginLeft: 0,
     textAlign: 'center',
   },
   descriptionContainer: {
-    backgroundColor: '#FFFFFF',
     padding: 16,
-    borderRadius: 10,
     marginBottom: 16,
-    shadowColor: '#000',
+    shadowColor: '#2c2c2c',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 2,
   },
   title: {
-    fontSize: 18,
+    fontSize: 30,
+    color: '#3f3f3f',
     fontWeight: 'bold',
     marginBottom: 8,
   },
   description: {
-    fontSize: 14,
+    fontSize: 16,
     color: '#333333',
     marginBottom: 16,
+    fontWeight: 400,
   },
   sectionTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    color: '3f3f3f',
+    fontSize: 20,
+    fontWeight: '600',
     marginBottom: 8,
   },
   ingredientList: {
     marginBottom: 16,
   },
   ingredient: {
-    fontSize: 14,
+    fontSize: 16,
     color: '#333333',
-    marginBottom: 4,
+    marginBottom: 12,
+    fontWeight: 400,
+  },
+  moreIngredient: {
+    fontSize: 16,
+    color: '#333333',
+    marginBottom: 12,
+    fontWeight: 600,
   },
   warningText: {
     color: '#D14343',
+    fontSize: 11,
+  },
+  containerButton: {
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   viewAllButton: {
-    backgroundColor: '#F0F0F0',
+    width: '40%',
+    justifyContent: 'center',
+    backgroundColor: '#F4F4F4',
     paddingVertical: 8,
     borderRadius: 5,
     alignItems: 'center',
   },
   viewAllText: {
-    color: '#3D65B0',
+    color: '#333333',
     fontWeight: 'bold',
   },
   recommendationContainer: {
-    backgroundColor: '#E8F0FE',
+    height: '25%',
+    justifyContent: 'center',
+    backgroundColor: '#1E90FF',
     padding: 16,
     borderRadius: 10,
   },
@@ -147,18 +185,24 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 8,
-    color: '#3D65B0',
+    color: '#fff',
   },
   recommendationText: {
+    width: '95%',
     fontSize: 14,
-    color: '#333333',
+    color: '#fff',
+    fontWeight: '500',
     marginBottom: 16,
-  },
+  }, 
   chatButton: {
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
   chatText: {
-    color: '#3D65B0',
+    color: '#fff',
+    fontWeight: '500',
+  },
+  aiText: {
+    color: '#fff',
     fontWeight: 'bold',
   },
 });
