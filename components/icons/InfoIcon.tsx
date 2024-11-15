@@ -1,5 +1,5 @@
 import React from "react";
-import Svg, { Mask, Path } from "react-native-svg";
+import Svg, { Path } from "react-native-svg";
 const InfoIcon = () => {
   return (
     <Svg
